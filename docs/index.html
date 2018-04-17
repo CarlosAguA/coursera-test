@@ -4,6 +4,7 @@
     <title>Lunch Checker</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="styles/custom.css">
     <style>
       .message { font-size: 1.3em; font-weight: bold; }
     </style>
@@ -14,10 +15,13 @@
 
          <div  class="form-group">
              <input ng-model="itemsForLunch"  id="lunch-menu" type="text"
+             ng-class="{'red-border': colorsFlag == 0 && flagToShowMessage == true, 'green-border': (colorsFlag == 1 || colorsFlag == 2) && flagToShowMessage == true }"
              placeholder= "{{somePlaceholder}}"
              class="form-control">
          </div>
-         <div ng-show="flagToShowMessage == true" class="form-group"  > {{ displayMessage() }}
+         <div ng-show="flagToShowMessage == true"
+         ng-class="{ 'green-message': colorsFlag == 1 || colorsFlag == 2, 'red-message': colorsFlag == 0}"
+         class="form-group" >  {{ displayMessage() }}
          </div>
          <div class="form-group">
              <button ng-click="calculateItems()" class="btn btn-default">Check If Too Much</button>

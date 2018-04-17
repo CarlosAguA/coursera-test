@@ -12,6 +12,7 @@
       $scope.itemsForLunch = "";
       $scope.numberOfItems = 0 ;
       $scope.flagToShowMessage = false ;
+      $scope.colorsFlag = 0;
 
       $scope.calculateItems = function(){
         $scope.flagToShowMessage = true;
@@ -29,11 +30,14 @@
       $scope.displayMessage = function (){
       var items =  $scope.numberOfItems;
         if( items > 0 && items <= 3   ){
+          $scope.colorsFlag= 1;
             return "Enjoy!";
         }else if (items >3){
+           $scope.colorsFlag= 2;
             return "Too Much!" ;
         }
         else{
+           $scope.colorsFlag= 0;
             return "Please enter data first.";
         }
       };
@@ -42,7 +46,7 @@
       function removeArrayIndexWhenEmpty(array){
         //Remove the item from the array when it´s empty
         array.forEach( function(entry){
-
+           entry = entry.trim();
           if(entry == '' ){
               array.splice(-1,1)
           }
